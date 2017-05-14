@@ -16,44 +16,32 @@ namespace DevExpress.Xpf.LayoutControlDemo
 
     public partial class DataLayout1 : UserControl
     {
-        public const string UriPrefix = "/LayoutControlDemo;component";
-
         public DataLayout1()
         {
-            // Debugger.Break();
-            // 'Provide value on 'System.Windows.StaticResourceExtension' threw an exception.' Line number '45' and line position '107'.
-
             InitializeComponent();
         }
 
+        public TextEdit CodeEdit { [DebuggerStepThrough] get; set; }
+        public CodeViewer CodeViewer { [DebuggerStepThrough] get; set; }
+
         public void OnFinishedLoad()
         {
-            this.CodeEdit = this.codeEdit;
-            this.CodeViewer = this.code;
-
+            CodeEdit = this.codeEdit;
+            CodeViewer = this.code;
             CodeViewer.Bind(this);
-            this.DataContextChanged += this.DataLayout1_DataContextChanged;
 
             var data = this.DataContext as DataControlPageViewModel;
             if (data != null && DataControlPageViewModel.OnChanged != null)
                DataControlPageViewModel.OnChanged(data, data.SelectedObject);    // Lazy init
         }
-
-        private void DataLayout1_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
+        
+        void comboEdit_SelectedIndexChanged(object sender, System.Windows.RoutedEventArgs e)
         {
-            // TODO
+            var data = DataContext as DataControlPageViewModel;
+            if (data == null) return;
 
-            var prop = this.DataContext as controlProperties;
+            // please react finally on SelectedObject change!!
+            DataControlPageViewModel.OnChanged(data, data.SelectedObject);    
         }
-
-        public TextEdit CodeEdit {
-            [DebuggerStepThrough]
-            get; set;
-        }
-        public CodeViewer CodeViewer {
-            [DebuggerStepThrough]
-            get; set;
-        }
-
     }
 }

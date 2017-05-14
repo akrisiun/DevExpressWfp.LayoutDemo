@@ -46,8 +46,9 @@
                         <dxe:ComboBoxEdit 
                             x:Name="comboEdit" x:FieldModifier="public" 
                             ItemsSource="{Binding ObjectList}"
-                                          SelectedItem="{Binding SelectedObject, Mode=TwoWay}" 
-                                          DisplayMember="Name" IsTextEditable="False" />
+                                SelectedItem="{Binding SelectedObject, Mode=TwoWay}" 
+                                SelectedIndexChanged="comboEdit_SelectedIndexChanged"
+                                DisplayMember="Name" IsTextEditable="False" />
                     </dxlc:LayoutItem>
 
                     <dxe:TextEdit  

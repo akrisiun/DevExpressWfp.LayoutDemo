@@ -9,16 +9,10 @@ using System.IO;
 namespace DevExpress.Xpf.LayoutControlDemo
 {
     // xmlns:local="clr-namespace:DevExpress.Xpf.LayoutControlDemo"
-    //<local:CodeViewer CodePath = "Data" CurrentItem="{Binding SelectedObject.Obj}" 
-
-    //    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
-    //dxdb:DemoModule
+    // <local:CodeViewer CodePath = "Data" CurrentItem="{Binding SelectedObject.Obj}" 
 
     public class CodeViewer : UserControl
     {
-        public const string UriPrefix = "/LayoutControlDemo;component";
-        // <local:CodeViewer CodePath = "Data" CurrentItem="{Binding SelectedObject.Obj}" 
-
         public FrameworkElement SelectedItem {
             get { return (FrameworkElement)GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
@@ -31,7 +25,6 @@ namespace DevExpress.Xpf.LayoutControlDemo
             DependencyProperty.Register("CodePath", typeof(string), typeof(CodeViewer), new PropertyMetadata(null));
         public static readonly DependencyProperty CurrentItemProperty =
             DependencyProperty.Register("CurrentItem", typeof(object), typeof(CodeViewer), new PropertyMetadata(null));
-         
 
         public string CodePath {
             get { return (string)GetValue(CodePathProperty); }
@@ -59,8 +52,6 @@ namespace DevExpress.Xpf.LayoutControlDemo
 
             Instance = this;
             DataControlPageViewModel.OnChanged = Changed;
-
-            var debugParent = this.Parent;      // as LayoutGroup 
         }
 
         public static CodeViewer Instance { get; private set; }
@@ -73,7 +64,6 @@ namespace DevExpress.Xpf.LayoutControlDemo
 
             var baseDir = AppDomain.CurrentDomain.BaseDirectory;
             var sourceDir = Path.GetFullPath(baseDir + @"..\WpfLayoutDemo\Data");
-            // WpfLayoutDemo\Data\AdvancedGroupedLayoutData_FluentAPI.cs
 
             string file = obj.Path;
             if (!string.IsNullOrWhiteSpace(file) && File.Exists(Path.Combine(sourceDir, file)))
@@ -85,6 +75,5 @@ namespace DevExpress.Xpf.LayoutControlDemo
                 } catch (Exception ex) { code.Text = $"Failed {file} : {ex.Message}"; }
             }
         };
-
     }
 }
