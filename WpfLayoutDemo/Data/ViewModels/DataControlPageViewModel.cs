@@ -33,13 +33,9 @@ namespace DevExpress.Xpf.LayoutControlDemo
         }
         public IEnumerable<ObjectNamePair> ObjectList { get; private set; }
 
-        ObjectNamePair obj;
         public virtual ObjectNamePair SelectedObject {
-            get { return obj; }
-            set {
-                obj = value;
-                OnChanged?.Invoke(this, obj);
-            }
+            get;
+            set;
         }
 
         public static Action<DataControlPageViewModel, ObjectNamePair> OnChanged { get; set; }
